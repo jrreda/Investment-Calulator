@@ -1,27 +1,88 @@
-# EssentialsPractice
+# Investment Calculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0-next.2.
+A single-page Angular app that projects how an investment grows over time. Enter your starting amount, expected annual return, yearly contributions, and duration, then view a year-by-year breakdown of value, interest, and invested capital.
 
-## Development server
+![Investment Calculator screenshot](public/screenshot.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **Input form** — initial investment, expected return (%), annual investment, and duration (years)
+- **Yearly results table** — investment value, interest for the year, total interest, and invested capital
+- **Reactive state** — results driven by Angular signals via a shared `InvestmentService`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tech stack
 
-## Build
+- [Angular](https://angular.dev/) 18
+- TypeScript
+- Angular Forms (template-driven inputs)
+- CSS (component-scoped styles)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Getting started
 
-## Running unit tests
+### Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- npm (included with Node.js)
 
-## Running end-to-end tests
+### Install dependencies
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm install
+```
 
-## Further help
+### Run the development server
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm start
+```
+
+Open [http://localhost:4200/](http://localhost:4200/). The app reloads when you change source files.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+Output is written to `dist/essentials-practice/`.
+
+### Run unit tests
+
+```bash
+npm test
+```
+
+## Project structure
+
+```
+src/app/
+├── header/                 # Logo and title
+├── user-input/             # Investment parameters form
+├── investment-results/     # Results table
+├── investment.service.ts   # Compound-growth calculation
+├── investment-input.modal.ts
+└── investment-results.modal.ts
+```
+
+Static assets (logo, screenshot) live in `public/`.
+
+## How calculations work
+
+For each year, the app:
+
+1. Computes interest on the current balance: `balance × (expectedReturn / 100)`
+2. Adds that interest plus the annual investment to the balance
+3. Derives cumulative total interest and total amount invested for the table
+
+## Scripts
+
+| Command        | Description              |
+| -------------- | ------------------------ |
+| `npm start`    | Start dev server         |
+| `npm run build`| Production build         |
+| `npm test`     | Run Karma unit tests     |
+| `npm run watch`| Build in watch mode      |
+
+## License
+
+This project is for learning and practice purposes.
